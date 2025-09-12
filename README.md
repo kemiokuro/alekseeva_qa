@@ -17,7 +17,7 @@
 
 ##  Hexlet Тестирование интернет-магазина
 
-   [Hexlet "тестирование интернет-магазина"]([./(https://github.com/kemiokuro/qa-engineer-project-84))
+   [Hexlet "тестирование интернет-магазина"](https://github.com/kemiokuro/qa-engineer-project-84)
 
 ##  Hexlet Тестирование в продакшене
 
