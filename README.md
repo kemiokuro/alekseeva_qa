@@ -17,11 +17,11 @@
 
 ##  Hexlet "Тестирование интернет-магазина"
 
-   [Hexlet "Тестирование интернет-магазина"](https://github.com/kemiokuro/qa-engineer-project-84)
+   [Ознакомиться](https://github.com/kemiokuro/qa-engineer-project-84)
 
 ##  Hexlet "Тестирование в продакшене"
 
-   [Hexlet "Тестирование в продакшене"](https://github.com/kemiokuro/qa-engineer-project-85)
+   [Ознакомиться](https://github.com/kemiokuro/qa-engineer-project-85)
 
 ## 🛠 Технологии и навыки
 
