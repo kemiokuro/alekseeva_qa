@@ -10,7 +10,7 @@
 | "Инженер по тестированию"                                            | Hexlet               | Май   2024 | [Посмотреть](./Education-Certificates/Anastasiya_Alekseeva_QA_Ru.png)    |
 | "Тестирование ПО с нуля Теория + Практика"                           | Stepik               | Апрель 2025| [Посмотреть](./Education-Certificates/stepik-certificate.pdf)            |
 | "Тестировщик программного обеспечения"                               | TesterToday          | Июнь  2025 | [Посмотреть](https://www.tester-today.com/)                              |
-| "SQL запросы"                                                        | Learndb              |            |                                                                          |
+| "SQL запросы"                                                        | Learndb              |            | В процессе прохождения                                                   |
 
 # Здесь собраны примеры тестовой документации, созданной в ходе обучения
 
