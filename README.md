@@ -43,6 +43,6 @@
 ## 📫 Как со мной связаться
 
 [![Email](https://img.shields.io/badge/Email-your.email@gmail.com-blue?style=flat&logo=gmail)](mailto:your.email@gmail.com)
-[![Telegram](https://t.me/[Kemiokuro])
+[![Telegram](https://img.shields.io/badge/Telegram-%40ivan_qa-blue?style=flat&logo=telegram)](https://t.me/Kemiokuro)
 
 💡 **Примечание для рекрутера:** Все проекты в этом портфолио являются учебными и выполнены в рамках прохождения курсов. Данные в них изменены и не относятся к каким-либо реальным коммерческим продуктам.
