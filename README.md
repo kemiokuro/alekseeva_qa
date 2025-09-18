@@ -23,7 +23,7 @@
 
 ##  Чек-лист, созданный при прохождении практики
 
-   [Ознакомиться]([https://github.com/kemiokuro/qa-engineer-project-85](https://github.com/kemiokuro/alekseeva_qa/blob/main/Test-Documentation/Check-Lists/dev_854.xlsx)
+   [Ознакомиться]([https://github.com/kemiokuro/qa-engineer-project-85)
 
 ## 🛠 Технологии и навыки
 
