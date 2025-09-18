@@ -42,7 +42,8 @@
 
 ## 📫 Как со мной связаться
 
-[![Email](https://img.shields.io/badge/Email-your.email@gmail.com-blue?style=flat&logo=gmail)](alekseeva@bugs-hunter.ru
+[![Email](https://img.shields.io/badge/alekseeva@bugs-hunter.ru
+-blue?style=flat&logo=gmail)](alekseeva@bugs-hunter.ru
 )
 [![Telegram](https://img.shields.io/badge/Telegram-%40Kemiokuro-blue?style=flat&logo=telegram)](https://t.me/Kemiokuro)
 
