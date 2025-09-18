@@ -13,9 +13,9 @@
 
 ## 📝 Примеры работ во время стажировки в коммерческой компании
 
-   [Чек-лист и заметки](https://github.com/kemiokuro/alekseeva_qa/blob/main/Test-Documentation/Check-Lists/dev_854.xlsx)
+   [№1 Чек-лист и заметки](https://github.com/kemiokuro/alekseeva_qa/blob/main/Test-Documentation/Check-Lists/dev_854.xlsx)
    
-   [Чек-лист](Test-Documentation/Check-Lists/dev_972_939.xlsx)
+   [№2 Чек-лист и заметки](Test-Documentation/Check-Lists/dev_972_939.xlsx)
 
 
 ## 🛠 Технологии и навыки
