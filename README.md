@@ -42,8 +42,7 @@
 
 ## 📫 Как со мной связаться
 
-[![Email](https://img.shields.io/badge/Email-alekseeva@bugs--hunter.ru-blue?style=flat&logo=gmail)](alekseeva@bugs-hunter.ru
-)
+[![Email](https://img.shields.io/badge/Email-alekseeva@bugs--hunter.ru-blue?style=flat&logo=gmail)](mailto:alekseeva@bugs-hunter.ru)
 [![Telegram](https://img.shields.io/badge/Telegram-%40Kemiokuro-blue?style=flat&logo=telegram)](https://t.me/Kemiokuro)
 
 💡 **Примечание для рекрутера:** Все проекты в этом портфолио являются учебными и выполнены в рамках прохождения курсов. Данные в них изменены и не относятся к каким-либо реальным коммерческим продуктам.
