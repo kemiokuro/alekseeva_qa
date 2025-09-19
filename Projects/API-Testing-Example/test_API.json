@@ -1,0 +1,459 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+		"name": "Bookstore API Example (Portfolio)",
+		"description": "Пример тестовой коллекции для портфолио тестировщика. Демонстрирует работу с REST API интернет-магазина. Все эндпоинты являются заглушками.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://api.demo-bookstore.com",
+			"type": "string",
+			"description": "Базовый URL API"
+		},
+		{
+			"key": "auth_token",
+			"value": "",
+			"type": "string",
+			"description": "JWT Token, полученный при авторизации"
+		}
+	],
+	"item": [
+		{
+			"name": "Auth",
+			"description": "Запросы для аутентификации и управления сессией",
+			"item": [
+				{
+					"name": "Login - Получить токен",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Проверяем, что запрос успешен",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Парсим ответ и сохраняем токен в переменную коллекции",
+									"var jsonData = pm.response.json();",
+									"pm.test(\"Response has access token\", function () {",
+									"    pm.expect(jsonData).to.have.property('access_token');",
+									"});",
+									"pm.collectionVariables.set(\"auth_token\", jsonData.access_token);",
+									"console.log(\"Token saved: \" + pm.collectionVariables.get(\"auth_token\"));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"demo_user\",\n    \"password\": \"secretpassword\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successfull Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"demo_user\",\n    \"password\": \"secretpassword\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"body": "{\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkRlbW8gVXNlciIsImlhdCI6MTUxNjIzOTAyMn0.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\",\n    \"token_type\": \"bearer\",\n    \"expires_in\": 3600\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Current User Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User Profile",
+							"status": "OK",
+							"code": 200,
+							"body": "{\n    \"id\": 123,\n    \"username\": \"demo_user\",\n    \"email\": \"user@example.com\",\n    \"firstName\": \"Иван\",\n    \"lastName\": \"Петров\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout - Инвалидация токена",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Books",
+			"description": "Запросы для работы с каталогом книг",
+			"item": [
+				{
+					"name": "Get All Books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/books?limit=10&offset=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Books List",
+							"status": "OK",
+							"code": 200,
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"Тестирование DOT COM\",\n            \"author\": \"Роман Савин\",\n            \"isbn\": \"978-5-4461-1239-7\",\n            \"price\": 1250.50,\n            \"stock\": 15\n        },\n        {\n            \"id\": 2,\n            \"title\": \"Perfect Software\",\n            \"author\": \"Джеральд Вайнберг\",\n            \"isbn\": \"978-0-932633-75-7\",\n            \"price\": 980.00,\n            \"stock\": 3\n        }\n    ],\n    \"meta\": {\n        \"total\": 42,\n        \"limit\": 10,\n        \"offset\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Book by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/books/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Single Book",
+							"status": "OK",
+							"code": 200,
+							"body": "{\n    \"id\": 1,\n    \"title\": \"Тестирование DOT COM\",\n    \"author\": \"Роман Савин\",\n    \"description\": \"Подробное руководство по тестированию программного обеспечения...\",\n    \"isbn\": \"978-5-4461-1239-7\",\n    \"price\": 1250.50,\n    \"stock\": 15,\n    \"publishedYear\": 2017\n}"
+						}
+					]
+				},
+				{
+					"name": "Create New Book (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Новая книга по API тестированию\",\n    \"author\": \"Джейсон Лим\",\n    \"isbn\": \"978-1-12345-678-9\",\n    \"price\": 2999.99,\n    \"stock\": 100\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/books",
+							"host": [
+								"{{base_url}}"
+						],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Book Created",
+							"status": "Created",
+							"code": 201,
+							"body": "{\n    \"id\": 205,\n    \"title\": \"Новая книга по API тестированию\",\n    \"author\": \"Джейсон Лим\",\n    \"isbn\": \"978-1-12345-678-9\",\n    \"price\": 2999.99,\n    \"stock\": 100\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Book (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"price\": 1099.99,\n    \"stock\": 25\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/books/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"description": "Запросы для работы с заказами (требуют авторизации)",
+			"item": [
+				{
+					"name": "Create Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"items\": [\n        {\n            \"bookId\": 1,\n            \"quantity\": 2\n        },\n        {\n            \"bookId\": 2,\n            \"quantity\": 1\n        }\n    ],\n    \"shippingAddress\": \"г. Москва, ул. Примерная, д. 10, кв. 25\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/orders",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Order Created",
+							"status": "Created",
+							"code": 201,
+							"body": "{\n    \"id\": 9001,\n    \"userId\": 123,\n    \"status\": \"processing\",\n    \"totalAmount\": 3481.00,\n    \"items\": [\n        {\n            \"bookId\": 1,\n            \"title\": \"Тестирование DOT COM\",\n            \"quantity\": 2,\n            \"pricePerItem\": 1250.50\n        },\n        {\n            \"bookId\": 2,\n            \"title\": \"Perfect Software\",\n            \"quantity\": 1,\n            \"pricePerItem\": 980.00\n        }\n    ],\n    \"createdAt\": \"2023-10-25T12:34:56Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get My Orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/orders",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/orders/9001",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"9001"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HealthCheck",
+			"description": "Проверка доступности API",
+			"item": [
+				{
+					"name": "API Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"status"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "API is Online",
+							"status": "OK",
+							"code": 200,
+							"body": "{\n    \"status\": \"OK\",\n    \"message\": \"Service is operating normally\",\n    \"timestamp\": \"2023-10-25T10:15:30Z\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
