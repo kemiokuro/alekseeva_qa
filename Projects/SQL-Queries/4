@@ -1,0 +1,39 @@
+Задача:
+Получить информацию о городах часовых поясов:
+1. time_offset - время относительно UTC;
+2. city_name - название города.
+Если в часовом поясе нет городов, то city_name должно принимать значение null. Используй для этого RIGHT JOIN.
+Отсортировать результат по time_offset, city_name.
+
+Схема БД:
+Timezone
+├── # timezone_id (PK)
+└── * time_offset
+
+City
+├── # city_id (PK)
+├── * name
+└── * timezone_id (FK → Timezone.timezone_id)
+
+SQL-запрос:
+SELECT timezone.time_offset, city.name AS city_name
+FROM city
+RIGHT JOIN timezone ON timezone.timezone_id = city.timezone_id
+ORDER BY time_offset, city_name;
+
+Результат: 
+┌─────────────┬──────────────────┐
+│ time_offset │ city_name        │
+├─────────────┼──────────────────┤
+│ UTC+1       │ NULL             │
+│ UTC+10      │ Владивосток      │
+│ UTC+2       │ Калининград      │
+│ UTC+3       │ Москва           │
+│ UTC+3       │ Санкт-Петербург  │
+│ UTC+4       │ Самара           │
+│ UTC+5       │ Уфа              │
+│ UTC+6       │ Барнаул          │
+│ UTC+6       │ Новосибирск      │
+│ UTC+7       │ Кемерово         │
+│ UTC+8       │ Иркутск          │
+└─────────────┴──────────────────┘
