@@ -36,12 +36,12 @@
 
 ## 🎓 Мои учебные проекты (здесь собраны примеры тестовой документации, созданной в ходе обучения)
 
-   [Hexlet "Тестирование интернет-магазина"](https://github.com/kemiokuro/qa-engineer-project-84)
+*   [Hexlet "Тестирование интернет-магазина"](https://github.com/kemiokuro/qa-engineer-project-84)
 
-   [Hexlet "Тестирование в продакшене"](https://github.com/kemiokuro/qa-engineer-project-85)
+*   [Hexlet "Тестирование в продакшене"](https://github.com/kemiokuro/qa-engineer-project-85)
    
 
 ## 📫 Как со мной связаться
 
-[![Email](https://img.shields.io/badge/Email-alekseeva@bugs--hunter.ru-blue?style=flat&logo=gmail)](mailto:alekseeva@bugs-hunter.ru)
-[![Telegram](https://img.shields.io/badge/Telegram-%40Kemiokuro-blue?style=flat&logo=telegram)](https://t.me/Kemiokuro)
+*   [![Email](https://img.shields.io/badge/Email-alekseeva@bugs--hunter.ru-blue?style=flat&logo=gmail)](mailto:alekseeva@bugs-hunter.ru)
+*   [![Telegram](https://img.shields.io/badge/Telegram-%40Kemiokuro-blue?style=flat&logo=telegram)](https://t.me/Kemiokuro)
