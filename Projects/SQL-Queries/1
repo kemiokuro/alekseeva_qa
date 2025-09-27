@@ -1,0 +1,26 @@
+Задача: 
+Получить информацию о товарах категории с идентификатором 6 без использования JOIN:
+1. category_name - название категории товаров;
+2. product_name - название товара;
+3. description - описание товара;
+Отсортировать результат по названию товара.
+
+Схема БД:
+Category
+├── category_id (PK)
+├── parent_category_id
+└── name
+
+Product
+├── product_id (PK)
+├── category_id (FK → Category.category_id)
+├── name
+├── description
+└── warranty_in_months
+
+SQL-запрос:
+SELECT category_name AS category_name, product_name AS product_name, product.description
+FROM category, product
+WHERE product.category_id = category.category_id
+AND category.category_id = 6
+ORDER BY category_name;
