@@ -7,16 +7,16 @@
 
 Схема БД:
 Category
-├── category_id (PK)
-├── parent_category_id
-└── name
+├── # category_id (PK)
+├──   parent_category_id
+└── * name
 
 Product
-├── product_id (PK)
-├── category_id (FK → Category.category_id)
-├── name
-├── description
-└── warranty_in_months
+├── # product_id (PK)
+├── * category_id (FK → Category.category_id)
+├── * name
+├──   description
+└── * warranty_in_months
 
 SQL-запрос:
 SELECT category_name AS category_name, product_name AS product_name, product.description
@@ -24,3 +24,4 @@ FROM category, product
 WHERE product.category_id = category.category_id
 AND category.category_id = 6
 ORDER BY category_name;
+
