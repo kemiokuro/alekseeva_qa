@@ -1,0 +1,43 @@
+Задача:
+Получить информацию о товарах категории товаров:
+1. category_name - название категории товаров;
+2. product_name - название товара.
+Если в категории нет товаров, то значения столбца product_name должно быть равно null.
+Отсортировать результат сначала по названию категории товаров, затем по названию товара.
+
+Схема БД:
+Category
+├── # category_id (PK)
+├──   parent_category_id
+└── * name
+
+Product
+├── # product_id (PK)
+├── * category_id (FK → Category.category_id)
+├── * name
+├──   description
+└── * warranty_in_months
+
+SQL-запрос:
+SELECT category_name AS category_name, product_name AS product_name
+FROM category
+LEFT JOIN product
+ON category.category_id = product.category_id
+ORDER BY category_name, product_name;
+
+Результат:
+┌──────────────────────┬──────────────────┐
+│ category_name        │ product_name     │
+├──────────────────────┼──────────────────┤
+│ Аудиотехника         │ Наушники S3      │
+│ Бытовая техника      │ Пылесос 56       │
+│ Бытовая техника      │ Холодильник A2   │
+│ Игровые консоли      │ Nintendo         │
+│ Игровые консоли      │ PlayStation      │
+│ Игровые консоли      │ Xbox             │
+│ Ноутбуки             │ Ультрабук X5     │
+│ Ноутбуки и аксессуары│ NULL             │
+│ Планшеты             │ Deepbox          │
+│ Сотовые телефоны     │ МоноблойC4       │
+│ Сотовые телефоны     │ Слайдер B3       │
+└──────────────────────┴──────────────────┘
