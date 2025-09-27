@@ -1,0 +1,32 @@
+Задача:
+Сравнить таблицы product_price и purchase_item и выведсти уникальные идентификаторы товаров, которые больше не продаются, но их покупки есть (отсутствует запись в product_price, но присутствует в purchase_item), 
+либо товар ни разу не продавался (отсутствует запись в purchase_item, но присутствует в product_price).
+1. product_id_price - идентификатор товара из product_price;
+2. product_id_purchase - идентификатор товара из purchase_item.
+
+Схема БД:
+Product_price
+├── # product_id (PK, FK → Product.product_id)
+├── # store_id
+└── * price
+
+Purchase_item
+├── # purchase_item_id (PK)
+├── * purchase_id
+├── * product_id (FK → Product.product_id)
+└── * price
+
+SQL-запрос:
+SELECT DISTINCT product_price.product_id AS product_id_price, purchase_item.product_id AS product_id_purchase
+FROM product_price
+FULL JOIN purchase_item
+ON purchase_item.product_id = product_price.product_id
+WHERE product_price.product_id IS NULL OR purchase_item.product_id IS NULL;
+
+Результат: 
+┌──────────────────┬─────────────────────┐
+│ product_id_price │ product_id_purchase │
+├──────────────────┼─────────────────────┤
+│ NULL             │ 12                  │
+│ 5                │ NULL                │
+└──────────────────┴─────────────────────┘
