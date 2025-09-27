@@ -25,3 +25,11 @@ WHERE product.category_id = category.category_id
 AND category.category_id = 6
 ORDER BY category_name;
 
+Результат: 
+┌─────────────────┬──────────────┬─────────────┐
+│ category_name   │ product_name │ description │
+├─────────────────┼──────────────┼─────────────┤
+│ Игровые консоли │ Nintendo     │ 500 Гб      │
+│ Игровые консоли │ PlayStation  │ 800 Гб      │
+│ Игровые консоли │ Xbox         │ NULL        │
+└─────────────────┴──────────────┴─────────────┘
