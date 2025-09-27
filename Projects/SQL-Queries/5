@@ -1,0 +1,40 @@
+Задача:
+Получить декартово произведение строк таблиц часовых поясов и городов и вывести столбцы:
+1. city_name - название города;
+2. timezone_id_city - поле timezone_id из таблицы city;
+3. timezone_id_timezone - поле timezone_id из таблицы timezone;
+4. time_offset - время относительно UTC.
+Отсортируй результат по названию города, затем по коду временной зоны из таблицы timezone.
+
+Схема БД:
+Timezone
+├── # timezone_id (PK)
+└── * time_offset
+
+City
+├── # city_id (PK)
+├── * name
+└── * timezone_id (FK → Timezone.timezone_id)
+
+SQL-запрос:
+SELECT city.name AS city_name, city.timezone_id AS timezone_id_city, timezone.timezone_id AS timezone_id_timezone, timezone.time_offset
+FROM city
+CROSS JOIN timezone
+ORDER BY city_name, timezone_id_timezone
+
+Результат: 
+┌──────────────┬──────────────────┬─────────────────────┬─────────────┐
+│ city_name    │ timezone_id_city │ timezone_id_timezone│ time_offset │
+├──────────────┼──────────────────┼─────────────────────┼─────────────┤
+│ Барнаул      │ 5                │ 1                   │ UTC+2       │
+│ Барнаул      │ 5                │ 2                   │ UTC+3       │
+│ Барнаул      │ 5                │ 3                   │ UTC+4       │
+│ Барнаул      │ 5                │ 4                   │ UTC+5       │
+│ Барнаул      │ 5                │ 5                   │ UTC+6       │
+│ Барнаул      │ 5                │ 6                   │ UTC+7       │
+│ Барнаул      │ 5                │ 7                   │ UTC+8       │
+│ Барнаул      │ 5                │ 8                   │ UTC+10      │
+│ Барнаул      │ 5                │ 9                   │ UTC+1       │
+│ Барнаул      │ 5                │ 10                  │ UTC+9       │
+│ Владивосток  │ 8                │ 1                   │ UTC+2       │
+└──────────────┴──────────────────┴─────────────────────┴─────────────┘
