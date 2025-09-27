@@ -1,0 +1,37 @@
+Задача:
+Для каждой должности rank получить информацию о других должностях этого же магазина:
+1. store_id - идентификатор магазина;
+2. rank_id - идентификатор должности;
+3. rank_id_other - идентификатор другой должности магазина.
+Отсортировать результат по store_id, rank_id, rank_id_other.
+
+Схема БД:
+Rank
+├── # store_id (PK)
+├── # rank_id (PK)
+└── * name
+
+SQL-запрос:
+SELECT rank1.store_id, rank1.rank_id, rank2.rank_id as rank_id_other
+FROM rank AS rank1
+JOIN rank AS rank2
+ON rank1.store_id = rank2.store_id
+AND rank1.rank_id != rank2.rank_id
+ORDER BY rank1.store_id, rank1.rank_id, rank2.rank_id
+
+Результат:
+┌──────────┬─────────┬──────────────┐
+│ store_id │ rank_id │ rank_id_other│
+├──────────┼─────────┼──────────────┤
+│ 100      │ CHIEF   │ MANAGER      │
+│ 100      │ CHIEF   │ SELLER       │
+│ 100      │ MANAGER │ CHIEF        │
+│ 100      │ MANAGER │ SELLER       │
+│ 100      │ SELLER  │ CHIEF        │
+│ 100      │ SELLER  │ MANAGER      │
+│ 100      │ CHIEF   │ MANAGER      │
+│ 100      │ CHIEF   │ SELLER       │
+│ 100      │ MANAGER │ CHIEF        │
+│ 100      │ MANAGER │ SELLER       │
+│ 100      │ SELLER  │ CHIEF        │
+└──────────┴─────────┴──────────────┘
